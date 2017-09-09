@@ -23,6 +23,7 @@
         </div>
       </div>
     </div>
+    <footer></footer>
   </div>
 </template>
 
@@ -108,15 +109,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
     width: 100%;
     margin: auto;
   }
 
   .textDetails {
-    float: left;
     text-align: left;
     color: grey;
+    flex-shrink: 9999;
   }
 
   .itemName {
@@ -130,7 +130,6 @@
   }
 
   .priceDetails {
-    float: right;
     text-align: right;
   }
 
@@ -157,6 +156,12 @@
     border: 3px solid #258c21;
     background-color: #258c21;
     color: #ddd;
+  }
+
+  footer {
+    height: 10vw;
+    width: 100%;
+    background-color: lightgrey;
   }
 
 </style>

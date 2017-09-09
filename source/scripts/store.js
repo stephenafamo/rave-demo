@@ -11,49 +11,76 @@ export default new Vuex.Store({
 		purchases: [],
 		products: [
 			{
-				id: 12,
-				name: "my shirt",
-				img: "http://lorempixel.com/400/200/fashion/1",
+				id: 1,
+				name: "classy shirt",
 				category: "shirts",
-				price: 500
+				price: 12000
 			},
 			{
-				id: 123,
-				name: "my shorts",
-				img: "http://lorempixel.com/400/200/fashion/2",
+				id: 2,
+				name: "denim shorts",
 				category: "shorts",
-				price: 300
+				price: 7500
 			},
 			{
-				id: 123,
-				name: "my shorts",
-				img: "http://lorempixel.com/400/200/fashion/3",
-				category: "shorts",
-				price: 300
+				id: 3,
+				name: "cotton trousers",
+				category: "trousers",
+				price: 3000
 			},
 			{
-				id: 123,
-				name: "my shorts",
-				category: "shorts",
-				price: 300
+				id: 4,
+				name: "leather jacket",
+				category: "jackets",
+				price: 30000
 			},
 			{
-				id: 123,
-				name: "my shorts",
-				category: "shorts",
-				price: 300
+				id: 5,
+				name: "rolex wristwatch",
+				category: "watches",
+				price: 200000
 			},
 			{
-				id: 123,
-				name: "my shorts",
-				category: "shorts",
-				price: 300
+				id: 6,
+				name: "short party dress",
+				category: "dresses",
+				price: 22000
 			},
 			{
-				id: 123,
-				name: "my shorts",
-				category: "shorts",
-				price: 300
+				id: 7,
+				name: "dinner gown",
+				category: "gowns",
+				price: 25000
+			},
+			{
+				id: 8,
+				name: "leather shoes",
+				category: "shoes",
+				price: 28000
+			},
+			{
+				id: 9,
+				name: "sexy heels",
+				category: "shoes",
+				price: 45000
+			},
+			{
+				id: 10,
+				name: "Swaggerlicious Hoodie",
+				category: "jackets",
+				price: 125000
+			},
+			{
+				id: 11,
+				name: "classy bracelet",
+				category: "jewelry",
+				price: 12000
+			},
+			{
+				id: 12,
+				name: "diamond ring",
+				category: "jewelry",
+				price: 1125000
 			}
 		],
 		selected: 0,
