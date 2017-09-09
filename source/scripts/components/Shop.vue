@@ -2,7 +2,7 @@
   <div class="shop">
     <div class="shopItem" v-for="(product, index) in products">
       <div class="itemImg">
-        <img :src="'http://lorempixel.com/200/300/fashion/1' + (index % 10 -  9)"/>
+        <img :src="'https://lorempixel.com/200/300/fashion/1' + (index % 10 -  9)"/>
       </div>
       <div class="itemDetails">
         <div class="textDetails">
