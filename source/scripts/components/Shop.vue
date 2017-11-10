@@ -17,8 +17,8 @@
           <div class="itemPrice">
             {{ product.price | currency }}
           </div>
-          <div class="itemBuy" v-on:click="buy(index, product.id)">
-            Buy Now
+          <div class="itemBuy" v-on:click="addToCart(index, product.id)">
+            Add to cart
           </div>
         </div>
       </div>
@@ -28,140 +28,117 @@
 </template>
 
 <script>
-  import router from '../router'
-  import store from '../store'
-  export default {
-    computed: {
-      products () {
-        return store.state.products
-      }
-    },
-    methods: {
-      buy: function(index, id) {
-        var product = store.state.products[index]
-        var PBFKey = "FLWPUBK-1cf610974690c2560cb4c36f4921244a-X";
+import router from '../router'
+import store from '../store'
 
-        getpaidSetup({
-          PBFPubKey: PBFKey,
-          customer_email: "user@example.com",
-          customer_firstname: "Temi",
-          customer_lastname: "Adelewa",
-          custom_description: "Stephen's Rave Demo",
-          custom_logo: "http://media/logo.svg",
-          custom_title: "Rave Demo",
-          amount: product.price,
-          customer_phone: "234099940409",
-          country: "NG",
-          currency: "NGN",
-          txref: 'rave-demo-product-' + id,
-          onclose: function() {},
-          callback: function(response) {
-            var flw_ref = response.tx.flwRef; 
-            console.log("This is the response returned after a charge", response);
-            if (
-              response.tx.chargeResponseCode == "00" ||
-              response.tx.chargeResponseCode == "0"
-              ) 
-            {
-              store.commit('add_purchase', response)
-              router.push('/success');
-            } else {
-              router.push('/faliure');
-            }
-          }
-        });
-      }
+export default {
+  computed: {
+    products () {
+      return store.state.products
     }
+  },
+  methods: {
+    addToCart: function(index) {
+      store.commit('add_to_cart', index)
+      store.commit('reload_cart')
+      if(window.confirm("Added to cart. View cart?")) {
+        router.push("/cart")
+      }
+    }    
+  },
+  beforeMount(){
+    store.dispatch('load_products')
   }
+}
 </script>
 
 <style scoped>
-  .shop {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 80%;
-    margin: auto;
-    background-color: white;
-  }
+.shop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: auto;
+  background-color: white;
+}
 
-  .shopItem {
-    min-width: 250px;
-    max-width: 300px;
-    width: 100%;
-    text-align: center;
-    margin: 8% 3%;
-    box-sizing: border-box;
-    background-color: white;
-  }
+.shopItem {
+  min-width: 250px;
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+  margin: 8% 3%;
+  box-sizing: border-box;
+  background-color: white;
+}
 
-  .itemImg {
-    width: 100%;
-  }
+.itemImg {
+  width: 100%;
+}
 
-  img {
-    width: 100%;
-    padding: 0px;
-  }
+img {
+  width: 100%;
+  padding: 0px;
+}
 
-  .itemDetails {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin: auto;
-  }
+.itemDetails {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: auto;
+}
 
-  .textDetails {
-    text-align: left;
-    color: grey;
-    flex-shrink: 9999;
-  }
+.textDetails {
+  text-align: left;
+  color: grey;
+  flex-shrink: 9999;
+}
 
-  .itemName {
-    text-transform: uppercase;
-    font-weight: bolder;
-    margin: 10px 7px 5px 7px;
-  }
+.itemName {
+  text-transform: uppercase;
+  font-weight: bolder;
+  margin: 10px 7px 5px 7px;
+}
 
-  .itemCategory {
-    margin: 5px 7px 10px 7px;
-  }
+.itemCategory {
+  margin: 5px 7px 10px 7px;
+}
 
-  .priceDetails {
-    text-align: right;
-  }
+.priceDetails {
+  text-align: right;
+}
 
-  .itemPrice {
-    font-weight: bolder;
-    font-size: 1.2em;
-    color: #258c21;
-    margin: 10px 7px 5px 7px;
-  }
+.itemPrice {
+  font-weight: bolder;
+  font-size: 1.2em;
+  color: #258c21;
+  margin: 10px 7px 5px 7px;
+}
 
-  .itemBuy {
-    margin: 5px 7px 10px 7px;
-    cursor: pointer;
-    border: 3px solid #258c21;
-    padding: 3px;
-    font-size: small;
-    text-transform: uppercase;
-    font-weight: bold;
-    text-align: center;
-    color: #258c21;
-  }
+.itemBuy {
+  margin: 5px 7px 10px 7px;
+  cursor: pointer;
+  border: 3px solid #258c21;
+  padding: 3px;
+  font-size: small;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  color: #258c21;
+}
 
-  .itemBuy:hover {
-    border: 3px solid #258c21;
-    background-color: #258c21;
-    color: #ddd;
-  }
+.itemBuy:hover {
+  border: 3px solid #258c21;
+  background-color: #258c21;
+  color: #ddd;
+}
 
-  footer {
-    height: 10vw;
-    width: 100%;
-    background-color: lightgrey;
-  }
+footer {
+  height: 10vw;
+  width: 100%;
+  background-color: lightgrey;
+}
 
 </style>

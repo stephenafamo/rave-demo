@@ -3,7 +3,7 @@ import store from './store'
 import router from './router'
 import VueCurrencyFilter from 'vue-currency-filter'
 
-Vue.use(VueCurrencyFilter, {symbol : 'NGN'})
+Vue.use(VueCurrencyFilter, {symbol : 'NGN', thousandsSeparator: ','})
 
 const app = new Vue({
 	el: '#app',
